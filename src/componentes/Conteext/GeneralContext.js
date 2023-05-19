@@ -22,14 +22,14 @@ export const GeneralProvider = ({ children }) => {
         upd ? setUpd(false) : setUpd(true);
     };
 
-    const addQtyCart = () => {
-        const qty = car.reduce((acc, act) => acc + act.amount, 0);
-        setCars(qty);
-    };
-
     useEffect(() => {
+        const addQtyCart = () => {
+          const qty = car.reduce((acc, act) => acc + act.amount, 0);
+          setCars(qty);
+        };
+      
         addQtyCart();
-    }, [upd]);
+      }, [upd, car]);
 
     const removeToCar = (item) => {
         const newArray = car.filter(_item => item.id !== _item.id);
