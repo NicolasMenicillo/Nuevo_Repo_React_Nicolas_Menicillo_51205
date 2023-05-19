@@ -18,7 +18,7 @@ const InformationViews = () => {
 
 
 
-    const botonAgregar = (amount) => {
+    const botonAgregar = () => {
         setAmount(amount);
         addToCar(data, amount);
         notify(amount);
