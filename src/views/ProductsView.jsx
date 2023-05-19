@@ -36,6 +36,7 @@ const ProductsView = (props) => {
               </div>
             );
           })
+          
         )}
       </div>
     </Fragment>

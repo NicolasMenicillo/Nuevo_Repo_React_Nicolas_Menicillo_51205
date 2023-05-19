@@ -1,7 +1,8 @@
 import React, { Fragment, useContext, useMemo } from "react";
-import GeneralContext from "../Conteext/GeneralContext";
+import { GeneralContext } from "../Conteext/GeneralContext";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+
 
 const collectionOrders = "orders";
 
@@ -10,7 +11,7 @@ const BuyComponent = () => {
   const navigate = useNavigate();
 
   const _totalCompra = useMemo(() => {
-    return car.reduce((partialSum, item) => partialSum + item.price, 0);
+    return car.reduce((partialSum, item,) => partialSum + item.price * item.amount, 0);
   }, [car]);
 
   const _order = useMemo(() => {
@@ -23,11 +24,14 @@ const BuyComponent = () => {
     const db = getFirestore();
     const orderCollection = collection(db, collectionOrders);
     addDoc(orderCollection, _order).then(({ id }) => {
-      alert(`Orden de compra creada folio: ${id}`);
+      alert(`Su Orden De Compra Fue Creada Con Exito: ${id}`)
       cleanCar();
       navigate("/");
     });
   };
+
+  
+
 
   return (
     <Fragment>
@@ -37,7 +41,7 @@ const BuyComponent = () => {
             <h3>Resumen De La Compra:</h3>
           </div>
           <div>
-            <p> Productos Seleccionados: {" "+car.length+" "} </p>
+            <p> Productos Seleccionados: {" " + car.length + " "} </p>
           </div>
           <div>
             <p>Total De La Compra: ${_totalCompra}</p>

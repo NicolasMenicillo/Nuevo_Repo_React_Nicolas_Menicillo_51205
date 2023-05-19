@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-//import { NavLink } from "react-router-dom";
-import GeneralContext from "../Conteext/GeneralContext";
+
+import { GeneralContext } from "../Conteext/GeneralContext";
 import ItemButtonsComponent from "./itemButtonsComponent";
 
 
@@ -38,7 +38,6 @@ const removeThisItem = () =>{
         <img className="tarjetas-imagen" src={image} alt="" />
         <div className="tarjeta-precio-agregar">
           <p className="tarjeta-precio">${price}</p>
-
         </div>
       </div>
     </div>

@@ -2,16 +2,15 @@ import { NavLink } from "react-router-dom";
 import Logo from './logo.png'
 import { Fragment, memo, useContext, useMemo } from "react";
 import ListOptionNavBarComponent from "./ListOptionNavBarComponent";
-import GeneralContext from "../Conteext/GeneralContext";
 import useFirestore from "../../utils/useFirestore";
-
+import { GeneralContext } from "../Conteext/GeneralContext";
 const nameCollection = "categories";
 
 
 
 
 const NavBar = () => {
-    const { car } = useContext(GeneralContext);
+    const { cars } = useContext(GeneralContext);
     const [data] = useFirestore({nameCollection});
 
     const dataProcess = useMemo(() => {
@@ -30,7 +29,7 @@ const NavBar = () => {
                 <ListOptionNavBarComponent categories={dataProcess} />
 
                 <NavLink className= "carro" to="/products/car">
-                    <h3 className="bi bi-cart">{car.length}</h3> 
+                    <h3 className="bi bi-cart">{cars}</h3> 
                 </NavLink>
             </div>
         </Fragment>

@@ -1,26 +1,34 @@
-import React, { Fragment, useContext, } from "react";
-import { NavLink, useParams } from "react-router-dom";
-//import useFetch from "../utils/useFetch";
-import GeneralContext from "../componentes/Conteext/GeneralContext";
+import React, { Fragment, useContext, useState, } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import { useParams } from "react-router-dom";
+import { GeneralContext } from "../componentes/Conteext/GeneralContext";
 import useFirestore from "../utils/useFirestore";
+import ItemCountComponent from "../componentes/ItemListContainer/itemCountComponent";
 const nameCollection = "productos";
-//const BASE_URL = "https://fakestoreapi.com/products/";
+
 
 
 const InformationViews = () => {
     const { id: documentId } = useParams();
     const { addToCar } = useContext(GeneralContext);
     const [data] = useFirestore({ nameCollection, documentId });
+    const [amount, setAmount] = useState(0);
     const { title, description, image, price, } = data;
 
 
-    
 
-    const botonAgregar = () => {
-        addToCar(data);
-        alert("Agregado Al Carrito")
-        
-    }
+
+    const botonAgregar = (amount) => {
+        setAmount(amount);
+        addToCar(data, amount);
+        notify(amount);
+    };
+
+    const notify = (amount) =>
+    toast.success("Se ha agregado " + title + " x" + amount + " al carrito!", {
+      position: "bottom-right",
+      theme: "dark",
+    });
 
     return (
 
@@ -38,10 +46,12 @@ const InformationViews = () => {
                         </div>
                         <div className="producto-precio-comprar">
                             <p className="producto-precio">${price}</p>
-                            <NavLink>
-                                <button onClick={botonAgregar} className="producto-comprar">Agregar</button>
-                            </NavLink>
-                           
+                            <ItemCountComponent
+                                initial={0}
+                                stock={10}
+                                add={botonAgregar}
+                            ></ItemCountComponent>
+                            <ToastContainer />
                         </div>
                     </div>
                 </div>
