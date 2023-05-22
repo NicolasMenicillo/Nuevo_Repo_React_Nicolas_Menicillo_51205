@@ -1,7 +1,7 @@
 
 # "OlxCars" Venta de Autos Motos y Camiones A Escala.
 
-#### Es este sitio podras encontrar lo ultimo la mejor calidad en estos productos. 
+#### En este sitio podras encontrar lo ultimo y la mejor calidad en estos productos. 
 
 ## Scripts Disponibles 
 
